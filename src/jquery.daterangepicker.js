@@ -929,7 +929,8 @@
             customArrowPrevSymbol: null,
             customArrowNextSymbol: null,
             monthSelect: false,
-            yearSelect: false
+            yearSelect: false,
+            position: 'bottom'
         }, opt);
 
         opt.start = false;
@@ -1294,15 +1295,18 @@
                         left: offset.left - containerOffset.left - leftIndent
                     });
                 } else {
+                    var top = opt.position === 'bottom'
+                      ? offset.top + $(self).outerHeight() + parseInt($('body').css('border-top') || 0, 10)
+                      : offset.top - box.outerHeight() - parseInt($('body').css('border-top') || 0, 10)
                     if (offset.left < 460) //left to right
                     {
                         box.css({
-                            top: offset.top + $(self).outerHeight() + parseInt($('body').css('border-top') || 0, 10),
+                            top: top,
                             left: offset.left
                         });
                     } else {
                         box.css({
-                            top: offset.top + $(self).outerHeight() + parseInt($('body').css('border-top') || 0, 10),
+                            top: top,
                             left: offset.left + $(self).width() - box.width() - 16
                         });
                     }
@@ -1627,8 +1631,8 @@
             var hoverTime = parseInt(day.attr('time'));
             var tooltip = '';
 
-            if (day.hasClass('has-tooltip') && day.attr('data-tooltip')) {
-                tooltip = '<span class="tooltip-content">' + day.attr('data-tooltip') + '</span>';
+            if (day.hasClass('has-tooltip') && day.attr('data-tooltip-')) {
+                tooltip = '<span class="tooltip-content">' + day.attr('data-tooltip-') + '</span>';
             } else if (!day.hasClass('invalid')) {
                 if (opt.singleDate) {
                     box.find('.day.hovering').removeClass('hovering');
@@ -2500,7 +2504,7 @@
 
                     var todayDivAttr = {
                         time: today.time,
-                        'data-tooltip': today.tooltip,
+                        'data-tooltip-': today.tooltip,
                         'class': 'day ' + today.type + ' ' + today.extraClass + ' ' + (today.valid ? 'valid' : 'invalid') + ' ' + (highlightToday ? 'real-today' : '')
                     };
 
