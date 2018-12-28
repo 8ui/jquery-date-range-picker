@@ -1298,7 +1298,8 @@
                     var top = opt.position === 'bottom'
                       ? offset.top + $(self).outerHeight() + parseInt($('body').css('border-top') || 0, 10)
                       : offset.top - box.outerHeight() - parseInt($('body').css('border-top') || 0, 10)
-                    if (offset.left < 460) //left to right
+
+                    if (offset.left < (window.innerWidth / 2)) //left to right
                     {
                         box.css({
                             top: top,
@@ -1307,7 +1308,7 @@
                     } else {
                         box.css({
                             top: top,
-                            left: offset.left + $(self).width() - box.width() - 16
+                            left: offset.left - (box.outerWidth() - $(self).outerWidth())
                         });
                     }
                 }
@@ -2232,7 +2233,7 @@
             var arrowNext = '&gt;';
             if (opt.customArrowNextSymbol) arrowNext = opt.customArrowNextSymbol;
 
-            html += '<div class="month-wrapper">' +
+            html += '<div class="column"><div class="month-wrapper">' +
                 '   <table class="month1" cellspacing="0" border="0" cellpadding="0">' +
                 '       <thead>' +
                 '           <tr class="caption">' +
@@ -2332,7 +2333,7 @@
                 if (opt.customShortcuts) {
                     for (var i = 0; i < opt.customShortcuts.length; i++) {
                         var sh = opt.customShortcuts[i];
-                        html += '&nbsp;<span class="custom-shortcut"><a href="javascript:;" shortcut="custom">' + sh.name + '</a></span>';
+                        html += '<span class="custom-shortcut"><a href="javascript:;" shortcut="custom">' + sh.name + '</a></span>';
                     }
                 }
                 html += '</div>';
@@ -2350,7 +2351,7 @@
                 }
             }
 
-            html += '</div></div>';
+            html += '</div></div></div>';
 
 
             return $(html);
