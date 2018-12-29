@@ -1267,14 +1267,14 @@
                 }
             });
 
-            box.find('.time1 input[type=range]').on('change touchmove', function(e) {
+            box.find('.time1 input[type=range]').on('input', function(e) {
                 var target = e.target,
                     hour = target.name == 'hour' ? $(target).val().replace(/^(\d{1})$/, '0$1') : undefined,
                     min = target.name == 'minute' ? $(target).val().replace(/^(\d{1})$/, '0$1') : undefined;
                 setTime('time1', hour, min);
             });
 
-            box.find('.time2 input[type=range]').on('change touchmove', function(e) {
+            box.find('.time2 input[type=range]').on('input', function(e) {
                 var target = e.target,
                     hour = target.name == 'hour' ? $(target).val().replace(/^(\d{1})$/, '0$1') : undefined,
                     min = target.name == 'minute' ? $(target).val().replace(/^(\d{1})$/, '0$1') : undefined;
@@ -1308,7 +1308,7 @@
                     } else {
                         box.css({
                             top: top,
-                            left: offset.left - (box.outerWidth() - $(self).outerWidth())
+                            left: offset.left - (box.outerWidth() - $(self).outerWidth() - (opt.singleMonth ? 0 : 30))
                         });
                     }
                 }
