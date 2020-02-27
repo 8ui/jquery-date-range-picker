@@ -1299,6 +1299,10 @@
                       ? offset.top + $(self).outerHeight() + parseInt($('body').css('border-top') || 0, 10)
                       : offset.top - box.outerHeight() - parseInt($('body').css('border-top') || 0, 10)
 
+                    if (top + box.innerHeight() > window.innerHeight) {
+                      top = window.innerHeight - box.innerHeight();
+                    }
+
                     if (offset.left < (window.innerWidth / 2)) //left to right
                     {
                         box.css({

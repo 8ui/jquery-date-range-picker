@@ -105,9 +105,9 @@ $(function()
     	separator : ' ~ ',
     	format: 'DD.MM.YYYY HH:mm',
     	autoClose: false,
-		time: {
-			enabled: true
-		}
+			time: {
+				enabled: true
+			}
 	});
 		$('#date-range1-1').dateRangePicker(
 	{
