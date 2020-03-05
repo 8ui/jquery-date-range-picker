@@ -1032,8 +1032,22 @@
 
         return this;
 
+        function indexOf(el, nodes) {
+            for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i] == el) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
         function IsOwnDatePickerClicked(evt, selfObj) {
-            return (selfObj.contains(evt.target) || evt.target == selfObj || (selfObj.childNodes != undefined && $.inArray(evt.target, selfObj.childNodes) >= 0));
+            return (
+                selfObj.contains(evt.target)
+                || evt.target == selfObj
+                || (selfObj.childNodes != undefined
+                && indexOf(evt.target, selfObj.childNodes) >= 0)
+            );
         }
 
         function init_datepicker() {
